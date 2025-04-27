@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import {fetchAnswerById} from "../features/answers/answerByIdApi.ts";
+import {fetchAnswerById} from "../../features/answers/answerByIdApi.ts";
 
 interface Question {
     id: string;

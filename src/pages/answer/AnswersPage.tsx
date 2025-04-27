@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { fetchAnswers } from "../features/answers/answersApi.ts";
+import { fetchAnswers } from "../../features/answers/answersApi.ts";
+import { Link } from "react-router-dom";
 
 interface Question {
     id: string;
@@ -31,7 +32,7 @@ const SectionTitle = styled.h2`
   color: #846ded;
 `;
 
-const AnswerCard = styled.div`
+const AnswerCardLink = styled(Link)`
   background: white;
   padding: 20px;
   margin: 10px auto;
@@ -40,6 +41,7 @@ const AnswerCard = styled.div`
   max-width: 600px;
   width: 100%;
   text-align: left;
+  text-decoration: none;
 `;
 
 const QuestionTitle = styled.h3`
@@ -80,11 +82,11 @@ const AnswersPage = () => {
             {error && <p>Xatolik: {error}</p>}
             {!loading && !error && answers.length > 0 ? (
                 answers.map((answer) => (
-                    <AnswerCard key={answer.id}>
+                    <AnswerCardLink to={`/answers/${answer.id}`} key={answer.id}>
                         <QuestionTitle>{answer.question.content}</QuestionTitle>
                         <AnswerText>{answer.content}</AnswerText>
                         <Timestamp>{new Date(answer.createdAt).toLocaleString("uz-UZ")}</Timestamp>
-                    </AnswerCard>
+                    </AnswerCardLink>
                 ))
             ) : (
                 <p>Hali javoblar yo'q.</p>

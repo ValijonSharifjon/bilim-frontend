@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {useAuth} from "../context/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 
 // Styled Components
 const Container = styled.div`
@@ -65,26 +65,26 @@ const FooterText = styled.p`
   color: #6c757d;
 `;
 
-const RegisterPage = () => {
-    const { register } = useAuth();
+const LoginPage: React.FC = () => {
+    const { login } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleRegister = async (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await register(email, password);
+            await login(email, password);
             navigate("/");
         } catch (error) {
-            alert("Xatolik yuz berdi! Qayta urinib ko'ring.");
+            alert("Email yoki parol notoʻgʻri! Qayta urinib ko'ring.");
         }
     };
 
     return (
         <Container>
             <Card>
-                <Title>Roʻyxatdan oʻtish</Title>
+                <Title>Kirish</Title>
                 <Input
                     type="email"
                     placeholder="Email manzilingiz"
@@ -97,13 +97,13 @@ const RegisterPage = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button onClick={handleRegister}>Roʻyxatdan oʻtish</Button>
+                <Button onClick={handleLogin}>Kirish</Button>
                 <FooterText>
-                    Allaqachon akkauntingiz bormi? <Link to="/login">Kirish</Link>
+                    Hali roʻyxatdan oʻtmaganmisiz? <Link to="/register">Roʻyxatdan oʻtish</Link>
                 </FooterText>
             </Card>
         </Container>
     );
 };
 
-export default RegisterPage;
+export default LoginPage;

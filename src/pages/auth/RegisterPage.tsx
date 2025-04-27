@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import {useAuth} from "../context/AuthContext.tsx";
+import {useAuth} from "../../context/AuthContext.tsx";
 
 // Styled Components
 const Container = styled.div`
@@ -65,26 +65,26 @@ const FooterText = styled.p`
   color: #6c757d;
 `;
 
-const LoginPage: React.FC = () => {
-    const { login } = useAuth();
+const RegisterPage = () => {
+    const { register } = useAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = async (e: React.FormEvent) => {
+    const handleRegister = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await login(email, password);
+            await register(email, password);
             navigate("/");
         } catch (error) {
-            alert("Email yoki parol notoʻgʻri! Qayta urinib ko'ring.");
+            alert("Xatolik yuz berdi! Qayta urinib ko'ring.");
         }
     };
 
     return (
         <Container>
             <Card>
-                <Title>Kirish</Title>
+                <Title>Roʻyxatdan oʻtish</Title>
                 <Input
                     type="email"
                     placeholder="Email manzilingiz"
@@ -97,13 +97,13 @@ const LoginPage: React.FC = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button onClick={handleLogin}>Kirish</Button>
+                <Button onClick={handleRegister}>Roʻyxatdan oʻtish</Button>
                 <FooterText>
-                    Hali roʻyxatdan oʻtmaganmisiz? <Link to="/register">Roʻyxatdan oʻtish</Link>
+                    Allaqachon akkauntingiz bormi? <Link to="/login">Kirish</Link>
                 </FooterText>
             </Card>
         </Container>
     );
 };
 
-export default LoginPage;
+export default RegisterPage;

@@ -109,6 +109,11 @@ const Navbar = () => {
                     <Link to={user ? '/ask' : '/login'}>Savol berish</Link>
                     <UserName>{getUsername(user.email)}</UserName>
                     <LogoutButton onClick={logout}>Chiqish</LogoutButton>
+                    {
+                      (user.role === 'SUPERUSER' || user.role === 'ADMIN') && (
+                        <Link to="/admin/answers">Admin</Link>
+                      )
+                    }
                 </UserSection>
             ) : (
                 <NavButtons>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "../context/AuthContext";
-import apiClient from "../features/auth/apiClient";
+import apiClient from "../../features/auth/apiClient";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`

@@ -5,6 +5,7 @@ import api from "../features/auth/apiClient.ts";
 interface User {
     id: string;
     email: string;
+    role: string
 }
 
 interface AuthContextProps {
